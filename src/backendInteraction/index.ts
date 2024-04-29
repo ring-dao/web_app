@@ -1,0 +1,1 @@
+export {deleteTopic, getTopicById, getAllTopics, postTopic, patchTopic} from './topics';
