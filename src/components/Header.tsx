@@ -5,8 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import logo from '../assets/logo.png';
 
+const logo = require('../assets/logo.png');
 const Header: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));

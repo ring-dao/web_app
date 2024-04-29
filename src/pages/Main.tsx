@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Topic from '../components/TopicPreview.tsx'; // Import the Topic component
+import Topic from '../components/TopicPreview'; // Import the Topic component
+import Demo_sdk from '../sdk/demo';
 
 // Example data for topics
 const topicsData = [
@@ -23,18 +24,21 @@ const topicsData = [
 
 const MainPage: React.FC = () => {
   return (
-    <Grid container spacing={2} sx={{ padding: '20px' }}>
-      {topicsData.map((topic) => (
-        <Grid item xs={12} key={topic.id}>
-          <Topic
-            id={topic.id}
-            title={topic.title}
-            description={topic.description}
-            date={topic.date}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <div>
+      <Grid container spacing={2} sx={{ padding: '20px' }}>
+        {topicsData.map((topic) => (
+          <Grid item xs={12} key={topic.id}>
+            <Topic
+              id={topic.id}
+              title={topic.title}
+              description={topic.description}
+              date={topic.date}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Demo_sdk />
+    </div>
   );
 };
 

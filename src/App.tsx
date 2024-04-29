@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header.tsx'; // You don't need the .tsx extension here
-import MainPage from './pages/Main.tsx'; // Make sure the path is correct
-import TopicPage from './pages/TopicPage.tsx'; // Import the TopicPage component
+import Header from './components/Header'; // You don't need the .tsx extension here
+import MainPage from './pages/Main'; // Make sure the path is correct
+import TopicPage from './pages/TopicPage'; // Import the TopicPage component
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
