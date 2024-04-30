@@ -1,1 +1,1 @@
-export const apiURL = 'http://localhost:3000/api/';
+export const apiURL = 'https://api.ringdao.xyz/api';

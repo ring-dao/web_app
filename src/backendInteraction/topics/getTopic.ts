@@ -1,5 +1,6 @@
 import { IPostTopic } from "../../interface";
 import { apiURL } from "../../constant";
+import { ITopic } from "../../interface";
 
 /**
  * Function to post a topic
@@ -7,29 +8,30 @@ import { apiURL } from "../../constant";
  * @returns - A promise that resolves to void
  */
 export async function getAllTopics() {
-    const response = await fetch(apiURL+"topics/", {
+    const response = await fetch(apiURL + "topics/", {
         method: 'GET',
         headers: {
-        'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
     });
     if (!response.ok) {
-        throw new Error('Failed to get topic');
+        throw new Error('Failed to get topics');
     }
+    return response.json(); // Convert the response body to JSON and return it
 }
 
-/**
- * Function to get a topic by id
- * @param id - The id of the topic to be fetched
- */
-export async function getTopicById(id: string) {
-    const response = await fetch(apiURL+"topics/"+id, {
+export async function getTopicById(id: string): Promise<ITopic> {
+    const response = await fetch(`${apiURL}topics/${id}`, {
         method: 'GET',
         headers: {
-        'Content-Type': 'application/json',
-        }
+            'Content-Type': 'application/json',
+        },
     });
+
     if (!response.ok) {
         throw new Error('Failed to get topic');
     }
+
+    const topic: ITopic = await response.json(); // Parse the JSON response into an object
+    return topic;
 }

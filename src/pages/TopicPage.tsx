@@ -2,68 +2,54 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Card, CardContent, Typography } from '@mui/material';
-
-// Replace with the type of your actual data structure
-interface TopicData {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-}
+import { Card, CardContent, Typography, Box, Button, Paper } from '@mui/material';
+import { ITopic } from '../interface';
+import { getTopicById } from '../backendInteraction/topics/getTopic'; // Assurez-vous que le chemin d'importation est correct
 
 const TopicPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Capture the `id` from the URL
-  const [topicData, setTopicData] = useState<TopicData | null>(null);
-  
+  const { id } = useParams<{ id: string }>();
+  const [topicData, setTopicData] = useState<ITopic | null>(null);
+
   useEffect(() => {
-    // Mocking an API call with a timeout to simulate network delay
-    const fetchTopicData = async (topicId: string) => {
-      // Simulated delay of 1 second (1000ms)
-      const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-      await delay(1000);
-
-      // Mock data
-      const mockApiResponse: TopicData = {
-        id: topicId,
-        title: 'Mocked Topic Title',
-        description: 'This is a mocked description of the topic. It contains all the details you might expect from an actual API response.',
-        date: 'Published on 2024-04-28',
-      };
-
-      setTopicData(mockApiResponse);
+    const fetchTopicData = async () => {
+      if (id) {
+        try {
+          const data = await getTopicById(id);
+          setTopicData(data);
+        } catch (error) {
+          console.error('Failed to fetch topic:', error);
+        }
+      }
     };
 
-    if (id) {
-      fetchTopicData(id);
-    }
+    fetchTopicData();
   }, [id]);
 
-  // Handle the case where data is not yet loaded
   if (!topicData) {
-    return <div>Loading...</div>;
+    return <Typography sx={{ padding: 2 }}>Loading...</Typography>;
   }
 
-  // Now that we have the data, we can use it to populate our components
   return (
-    <div>
-      <Card raised sx={{ margin: '20px', boxShadow: 3 }}>
+    <Paper elevation={3} sx={{ maxWidth: 800, mx: 'auto', mt: 5, p: 2 }}>
+      <Box sx={{ mb: 2 }}>
+        <Button variant="outlined" href="/topics">
+          Back to Home Page
+        </Button>
+      </Box>
+      <Card raised>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {topicData.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+            {new Date(topicData.date).toLocaleDateString()}
+          </Typography>
+          <Typography variant="body1" color="text.primary" paragraph>
             {topicData.description}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {topicData.date}
-          </Typography>
-          {/* ... other content ... */}
         </CardContent>
       </Card>
-      {/* Here you would include other components like VotingSection, CommentsSection, etc. */}
-    </div>
+    </Paper>
   );
 };
 
