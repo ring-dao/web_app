@@ -4,6 +4,7 @@ import { Grid, Card, CardContent, Typography, Box, Button, Container } from '@mu
 import { Link } from 'react-router-dom';
 import { getAllTopics } from '../backendInteraction/topics/getTopic';
 import { ITopic } from '../interface';
+import JoinDAO from '../components/JoinDAO';
 
 const MainPage: React.FC = () => {
   const [topics, setTopics] = useState<ITopic[]>([]);
@@ -27,9 +28,10 @@ const MainPage: React.FC = () => {
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ my: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <JoinDAO />
+      <Box sx={{ my: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant="h4" component="h1">
-          Topics Overview
+          Ring DAO - Topics Overview
         </Typography>
       </Box>
       <Grid container spacing={3} justifyContent="center">
