@@ -32,7 +32,7 @@ const TopicPage: React.FC = () => {
   return (
     <Paper elevation={3} sx={{ maxWidth: 800, mx: 'auto', mt: 5, p: 2 }}>
       <Box sx={{ mb: 2 }}>
-        <Button variant="outlined" href="/topics">
+        <Button variant="outlined" href="/">
           Back to Home Page
         </Button>
       </Box>
