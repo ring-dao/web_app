@@ -6,4 +6,6 @@ export interface ITopic {
     description: string;  
     likes: string; 
     dislikes: string;
+    voteFor?: string;
+    voteAgainst?: string;
 }

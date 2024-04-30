@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { installSnap } from '../sdk/snapConnector'; // Make sure the paths and imports are correct
 
 const logo = require('../assets/logo.png');
 const Header: React.FC = () => {
@@ -27,12 +28,13 @@ const Header: React.FC = () => {
         </Link>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           sx={{
             boxShadow: 2,
             borderRadius: '20px',
             padding: '10px 20px', // Adds padding inside the button for a larger appearance
           }}
+          onClick={installSnap} // Connect wallet functionality
         >
           {isMobile ? 'Connect' : 'Connect Wallet'}
         </Button>

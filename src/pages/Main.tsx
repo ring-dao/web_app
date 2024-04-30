@@ -1,4 +1,3 @@
-// MainPage.tsx
 import React, { useState, useEffect } from 'react';
 import { Grid, Card, CardContent, Typography, Box, Button, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -13,7 +12,11 @@ const MainPage: React.FC = () => {
     const loadTopics = async () => {
       try {
         const fetchedTopics = await getAllTopics();
-        setTopics(fetchedTopics);
+        const modifiedTopics = fetchedTopics.map((topic: { description: string; }) => ({
+          ...topic,
+          description: topic.description.length > 200 ? topic.description.substring(0, 200) + '...' : topic.description
+        }));
+        setTopics(modifiedTopics);
       } catch (error) {
         console.error('Failed to load topics:', error);
       }
@@ -31,7 +34,7 @@ const MainPage: React.FC = () => {
       <JoinDAO />
       <Box sx={{ my: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant="h4" component="h1">
-          Ring DAO - Topics Overview
+          Proposals Overview
         </Typography>
       </Box>
       <Grid container spacing={3} justifyContent="center">
@@ -40,9 +43,15 @@ const MainPage: React.FC = () => {
             <Card raised sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {topic.title}
+                <b>{topic.title}</b>
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" paragraph sx={{
+                  textAlign: 'justify',
+                  border: '1px solid black',
+                  padding: '8px',
+                  borderRadius: '4px',
+                  margin: '10px 0'
+                }}>
                   {topic.description}
                 </Typography>
               </CardContent>
