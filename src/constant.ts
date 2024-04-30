@@ -1,1 +1,1 @@
-export const apiURL = 'https://api.ringdao.xyz/api';
+export const apiURL = 'https://api.ringdao.xyz/api/';
