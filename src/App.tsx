@@ -6,6 +6,9 @@ import TopicPage from './pages/TopicPage'; // Import the TopicPage component
 import NotFoundPage from './pages/NotFoundPage'; // Make sure to import the NotFoundPage
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
+
+
+
 function App() {
   return (
     <Router>

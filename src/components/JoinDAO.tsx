@@ -2,17 +2,21 @@ import React from 'react';
 import { AppBar, Toolbar, Button, Container } from '@mui/material';
 import { mint } from '../sdk/contractConnector'; // Make sure the paths and imports are correct
 import { installSnap, getAddresses } from '../sdk/snapConnector'; // Make sure the paths and imports are correct
+
 const JoinDAO = () => {
     const [addresses, setAddresses] = React.useState<string[]>([]);
+
+    const handleOpenLink = () => {
+        // Opens the URL in a new browser tab
+        window.open('https://docs.metamask.io/snaps/get-started/install-flask/', '_blank');
+      };
 
     const handleMint = async () => {
         try {
             await mint();
             console.log('Minting successful!');
-            alert('Minting successful! You are now part of the DAO');
         } catch (error) {
             console.error('Minting failed:', error);
-            alert('Minting failed, please try again.');
         }
     };
 
@@ -24,18 +28,6 @@ const JoinDAO = () => {
         } catch (error) {
             console.error('Snap installation failed:', error);
             alert('Snap installation failed, please try again.');
-        }
-    };
-
-    const handleGetAddresses = async () => {
-        try {
-            const retrievedAddresses = await getAddresses();
-            setAddresses(retrievedAddresses);
-            console.log('Addresses retrieved:', retrievedAddresses);
-            alert('Addresses retrieved successfully!');
-        } catch (error) {
-            console.error('Failed to retrieve addresses:', error);
-            alert('Failed to retrieve addresses, please try again.');
         }
     };
 
@@ -62,10 +54,10 @@ const JoinDAO = () => {
                     <Button 
                         variant="outlined" 
                         color="primary"  // Consistent visible color
-                        onClick={handleGetAddresses}
+                        onClick={handleOpenLink}
                         style={{ margin: '0 10px' }}
                     >
-                        Get Addresses
+                        Install MM Flask
                     </Button>
                 </Toolbar>
             </Container>

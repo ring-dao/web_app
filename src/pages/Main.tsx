@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getAllTopics } from '../backendInteraction/topics/getTopic';
 import { ITopic } from '../interface';
 import JoinDAO from '../components/JoinDAO';
+import SubmitProposal from '../components/SubmitProposal';
 
 const MainPage: React.FC = () => {
   const [topics, setTopics] = useState<ITopic[]>([]);
@@ -32,9 +33,14 @@ const MainPage: React.FC = () => {
   return (
     <Container maxWidth="lg">
       <JoinDAO />
+      <Box sx={{ my: 4, mx: 2, p: 2, border: '1px dashed gray', borderRadius: 2 }}>
+        <Typography variant="body1" style={{ textAlign: 'justify' }}>
+          To use Ring DAO and test the potential of ring signatures for anonymous proposal submission and voting, please install MetaMask Flask and our dedicated snap, then connect to the site via your new MetaMask Flask extension.<br></br> To interact with the contracts, first join the DAO by minting an SBT by clicking the <b>JOIN DAO</b> button above.🔒
+        </Typography>
+      </Box>
       <Box sx={{ my: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant="h4" component="h1">
-          Proposals Overview
+        📜Proposals Overview
         </Typography>
       </Box>
       <Grid container spacing={3} justifyContent="center">
@@ -64,6 +70,7 @@ const MainPage: React.FC = () => {
           </Grid>
         ))}
       </Grid>
+      <SubmitProposal />
     </Container>
   );
 };
